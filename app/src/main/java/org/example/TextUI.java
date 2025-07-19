@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUI {
@@ -12,42 +13,92 @@ public class TextUI {
     }
 
     public void start() {
-        this.askMealCategory();
-        String mealCategory = this.receiveInput();
-        this.askMealName();
-        String mealName = this.receiveInput();
-        this.askIngredients();
-        String ingredients = this.receiveInput();
-        System.out.println();
-        this.printMeal(mealCategory, mealName, ingredients);
-        System.out.println("The meal has been added!");
+
+        while (true) {
+            this.askOperation();
+            String operation = this.receiveInput();
+
+            if (operation.equals("exit")) {
+                System.out.println("Bye!");
+                break;
+            }
+
+            this.processOperation(operation);
+
+
+        }
+
+
+
     }
 
-    public void askMealCategory() {
+    private void askMealCategory() {
         System.out.println("Which meal do you want to add " +
                 "(breakfast, lunch, dinner)?");
     }
 
-    public String receiveInput() {
+    private String receiveInput() {
         return this.scanner.nextLine();
     }
 
-    public void askMealName() {
+    private void askMealName() {
         System.out.println("Input the meal's name:");
     }
 
-    public void askIngredients() {
+    private void askIngredients() {
         System.out.println("Input the ingredients:");
     }
 
-    public void printMeal(String mealCategory, String mealName,
+    private void printMeal(String mealCategory, String mealName,
                           String ingredients) {
         System.out.println("Category " + mealCategory);
         System.out.println("Name: " + mealName);
         System.out.println("Ingredients:");
         for (String word : ingredients.split(",")) {
-            System.out.println(word);
+            System.out.println(word.trim());
         }
+    }
+
+    private void askOperation() {
+        System.out.println("What would you like to do " +
+                "(add, show, exit)?");
+    }
+
+    private void processOperation(String operation) {
+        switch (operation) {
+            case "add":
+                this.addMeal();
+                break;
+            case "show":
+                this.showMeals();
+                break;
+        }
+    }
+
+    private void showMeals() {
+        int listLength = this.service.getListLength();
+        ArrayList<String> mealCategory = this.service.getAllMealCategory();
+        ArrayList<String> mealName = this.service.getAllMealName();
+        ArrayList<String> ingredients = this.service.getAllIngredients();
+
+        System.out.println();
+        for (int i = 0; i < listLength; i++) {
+            printMeal(mealCategory.get(i), mealName.get(i), ingredients.get(i));
+            System.out.println();
+        }
+    }
+
+    private void addMeal() {
+        this.askMealCategory();
+        String mealCategory = this.receiveInput();
+        this.service.addMealCategory(mealCategory);
+        this.askMealName();
+        String mealName = this.receiveInput();
+        this.service.addMealName(mealName);
+        this.askIngredients();
+        String ingredients = this.receiveInput();
+        this.service.addIngredients(ingredients);
+        System.out.println("The meal has been added!");
     }
 
 }
