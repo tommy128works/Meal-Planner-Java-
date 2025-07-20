@@ -8,6 +8,11 @@ public class App {
 
 
     public static void main(String[] args) {
+        try {
+            PgDatabase db = new PgDatabase();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         AppService service = new AppService();
         TextUI ui = new TextUI(service);
