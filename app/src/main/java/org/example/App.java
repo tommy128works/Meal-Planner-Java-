@@ -9,8 +9,16 @@ public class App {
 
     public static void main(String[] args) {
 
+//        For test database
+//        try {
+//            PgDatabase db = new PgDatabase();
+//        } catch (Exception e) {
+//            System.out.println("Error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+
         try {
-            PgDatabase db = new PgDatabase();
+            MealsDb db = new MealsDb();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();

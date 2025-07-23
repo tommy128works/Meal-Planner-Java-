@@ -8,7 +8,7 @@ public class PgDatabase {
         // The default PostgreSQL server port is 5432
         String DB_URL = "jdbc:postgresql://localhost:5432/person_db";
         String USER = "test456";
-        String PASS = "11111";
+        String PASS = "1111";
 
         Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
         connection.setAutoCommit(true);
