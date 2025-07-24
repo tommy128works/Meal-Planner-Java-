@@ -17,12 +17,15 @@ public class App {
 //            e.printStackTrace();
 //        }
 
-        try {
-            MealsDb db = new MealsDb();
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }
+//        For testing meals_db
+//        try {
+//            MealsDb db = new MealsDb();
+//        } catch (Exception e) {
+//            System.out.println("Error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+
+
 
         AppService service = new AppService();
         TextUI ui = new TextUI(service);

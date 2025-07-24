@@ -26,15 +26,15 @@ public class TextUI {
         }
     }
 
-    private void printMeal(String mealCategory, String mealName,
-                          String ingredients) {
-        System.out.println("Category " + mealCategory);
-        System.out.println("Name: " + mealName);
-        System.out.println("Ingredients:");
-        for (String word : ingredients.split(",")) {
-            System.out.println(word.trim());
-        }
-    }
+//    private void printMeal(String mealCategory, String mealName,
+//                          String ingredients) {
+//        System.out.println("Category " + mealCategory);
+//        System.out.println("Name: " + mealName);
+//        System.out.println("Ingredients:");
+//        for (String word : ingredients.split(",")) {
+//            System.out.println(word.trim());
+//        }
+//    }
 
     private void askOperation() {
         System.out.println("What would you like to do " +
@@ -47,37 +47,41 @@ public class TextUI {
                 this.addMeal();
                 break;
             case "show":
-                this.showMeals();
+//                this.showMeals();
                 break;
         }
     }
 
-    private void showMeals() {
-        int listLength = this.service.getListLength();
-        ArrayList<String> mealCategory = this.service.getAllMealCategory();
-        ArrayList<String> mealName = this.service.getAllMealName();
-        ArrayList<String> ingredients = this.service.getAllIngredients();
-
-        if (listLength == 0) {
-            System.out.println("No meals saved. Add a meal first.");
-            return;
-        }
-
-        System.out.println();
-        for (int i = 0; i < listLength; i++) {
-            printMeal(mealCategory.get(i), mealName.get(i), ingredients.get(i));
-            System.out.println();
-        }
-    }
+//    private void showMeals() {
+//        int listLength = this.service.getListLength();
+//        ArrayList<String> mealCategory = this.service.getAllMealCategory();
+//        ArrayList<String> mealName = this.service.getAllMealName();
+//        ArrayList<String> ingredients = this.service.getAllIngredients();
+//
+//        if (listLength == 0) {
+//            System.out.println("No meals saved. Add a meal first.");
+//            return;
+//        }
+//
+//        System.out.println();
+//        for (int i = 0; i < listLength; i++) {
+//            printMeal(mealCategory.get(i), mealName.get(i), ingredients.get(i));
+//            System.out.println();
+//        }
+//    }
 
     private void addMeal() {
         System.out.println("Which meal do you want to add " +
                 "(breakfast, lunch, dinner)?");
+        String mealCategory;
+        String mealName;
+        String ingredients;
+
         while (true) {
-            String mealCategory = this.scanner.nextLine();
+            mealCategory = this.scanner.nextLine();
             if (mealCategory.equals("breakfast") || mealCategory.equals("lunch")
                     || mealCategory.equals("dinner")) {
-                this.service.addMealCategory(mealCategory);
+//                this.service.addMealCategory(mealCategory);
                 break;
             }
             System.out.println("Wrong meal category! " +
@@ -86,9 +90,9 @@ public class TextUI {
 
         System.out.println("Input the meal's name:");
         while (true) {
-            String mealName = this.scanner.nextLine();
+            mealName = this.scanner.nextLine();
             if (mealName.matches("[a-zA-Z, ]+")) {
-                this.service.addMealName(mealName);
+//                this.service.addMealName(mealName);
                 break;
             }
             System.out.println("Wrong format. Use letters only!");
@@ -96,13 +100,17 @@ public class TextUI {
 
         System.out.println("Input the ingredients:");
         while (true) {
-            String ingredients = this.scanner.nextLine();
+            ingredients = this.scanner.nextLine();
             if (ingredients.matches("[a-zA-Z, ]+")) {
-                this.service.addIngredients(ingredients);
+//                this.service.addIngredients(ingredients);
                 break;
             }
             System.out.println("Wrong format. Use letters only!");
         }
+
+        // call service class to save to database
+        ArrayList<String> ingredientsList = this.service.convertStringToArrayList(ingredients);
+        this.service.createMeal(mealCategory, mealName, ingredientsList);
 
         System.out.println("The meal has been added!");
     }
