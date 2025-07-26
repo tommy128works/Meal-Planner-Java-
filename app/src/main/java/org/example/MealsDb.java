@@ -8,12 +8,12 @@ public class MealsDb {
     String USER = "postgres";
     String PASS = "1111";
 
-    public MealsDb() throws SQLException {
+    public MealsDb() {
 
 
     }
 
-    void selectAll() {
+    void readMeal() {
         String sql = "SELECT * FROM ingredients";
 
         try (

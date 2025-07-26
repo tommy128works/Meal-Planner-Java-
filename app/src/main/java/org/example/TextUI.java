@@ -47,12 +47,21 @@ public class TextUI {
                 this.addMeal();
                 break;
             case "show":
-//                this.showMeals();
+                this.showMeals();
                 break;
         }
     }
 
-//    private void showMeals() {
+    private void showMeals() {
+        // need to get meal and category from meals table
+        // get ingredients from ingredients table
+        // print it all
+        // i might be able to just iterate through ResultSet
+
+
+
+
+
 //        int listLength = this.service.getListLength();
 //        ArrayList<String> mealCategory = this.service.getAllMealCategory();
 //        ArrayList<String> mealName = this.service.getAllMealName();
@@ -68,7 +77,7 @@ public class TextUI {
 //            printMeal(mealCategory.get(i), mealName.get(i), ingredients.get(i));
 //            System.out.println();
 //        }
-//    }
+    }
 
     private void addMeal() {
         System.out.println("Which meal do you want to add " +

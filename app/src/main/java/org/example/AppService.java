@@ -14,13 +14,7 @@ public class AppService {
 //        this.mealCategory = new ArrayList<String>();
 //        this.mealName = new ArrayList<String>();
 //        this.ingredients = new ArrayList<String>();
-
-        try {
-            this.db = new MealsDb();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        this.db = new MealsDb();
     }
 
     public ArrayList<String> getAllMealCategory() {
@@ -51,6 +45,7 @@ public class AppService {
         }
         return list;
     }
+
 
 
 //    public void addMealCategory(String mealCategory) {
